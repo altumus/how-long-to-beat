@@ -3,7 +3,15 @@ import * as vueRouter from 'vue-router'
 const _routes:Array<vueRouter.RouteRecordRaw> = [
   {
     path: '/',
-    component: {},
+    component: () => import('@/components/MainPage.vue'),
+  },
+  {
+    path: '/search',
+    component: () => import('@/components/SearchPage.vue')
+  },
+  {
+    path: '/:catchAll(.*)',
+    component: () => import('@/components/NotFoundPage.vue')
   }
 ]
 
