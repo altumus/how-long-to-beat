@@ -1,9 +1,9 @@
 import * as vueRouter from 'vue-router'
 
-const _routes:Array<vueRouter.RouteRecordRaw> = [
+const _routes: Array<vueRouter.RouteRecordRaw> = [
   {
     path: '/',
-    component: () => import('@/components/MainPage.vue'),
+    component: () => import('@/components/MainPage.vue')
   },
   {
     path: '/search',

@@ -1,7 +1,7 @@
 <template>
-  <MainHeader/>
+  <MainHeader />
   <div class="w-full h-full">
-    <RouterView/>
+    <RouterView />
   </div>
 </template>
 

@@ -1,9 +1,9 @@
 <template>
-  <div class="h-[40px] bg-[#352F44] text-white flex items-center justify-between grow p-[10px]">
+  <div
+    class="h-[40px] bg-[#111012] text-white flex items-center justify-between grow p-[10px]"
+  >
     <router-link to="/">
-      <div>
-        Game Tracker
-      </div>
+      <div>Game Tracker</div>
     </router-link>
     <div class="flex gap-x-[30px]">
       <router-link to="/">
