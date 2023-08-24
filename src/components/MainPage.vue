@@ -1,7 +1,7 @@
 <template>
   <div class="w-full h-full flex flex-col">
     <div
-      class="w-full flex bg-[#FAF0E6] flex-col items-center justify-evenly h-[1200px]"
+      class="w-full flex bg-[#FAF0E6] flex-col items-center justify-evenly h-[500px]"
     >
       <SearchBar />
       <p class="text-center text-[30px] font-bold">
@@ -22,14 +22,17 @@
         ?
       </p>
     </div>
-    <div class="w-full h-full">
-      <span> преимущества </span>
+    <div class="w-full h-full bg-[#5C5470] py-[20px]">
+      <div class="w-full h-full flex flex-wrap mx-[100px] gap-[20px]">
+        <GameCard v-for="label in labels" :key="label" :label="label" />
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import SearchBar from "@/components/common/SearchBar.vue";
+import GameCard from "@/components/common/GameCard.vue";
 import { vueTyperNext } from "vue-typer-next";
 
 const labels = [
