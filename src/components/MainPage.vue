@@ -9,14 +9,16 @@
         <br />
         сколько нужно времени, <br />
         чтобы пройти
-        <vueTyperNext
-          :data="labels"
-          :back="true"
-          :back-speed="80"
-          :handler-num="100"
-          :type-speed="80"
-          cursor-char="|"
-        />
+        <span>
+          <vueTyperNext
+            :data="labels"
+            :back="true"
+            :back-speed="80"
+            :handler-num="100"
+            :type-speed="80"
+            cursor-char="|"
+          />
+        </span>
         ?
       </p>
     </div>
@@ -45,5 +47,9 @@ const labels = [
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+:deep(.content) {
+  justify-content: center;
 }
 </style>
