@@ -1,27 +1,32 @@
 <template>
   <div class="w-full h-full flex flex-col">
     <div
-      class="w-full flex bg-[#030A11] flex-col items-center justify-evenly h-[500px]"
+      class="w-full flex bg-[#030A11] bg-left-top bg-no-repeat flex-col items-center justify-evenly h-[500px]"
+      :style="`background-image: url(${dishonored})`"
     >
-      <SearchBar />
-      <article class="text-center text-white text-[30px] font-bold">
-        <h1>Game Tracker</h1>
-        <p>
-          сколько нужно времени, <br />
-          чтобы пройти
-          <span>
-            <vueTyperNext
-              :data="labels"
-              :back="true"
-              :back-speed="80"
-              :handler-num="100"
-              :type-speed="80"
-              cursor-char="|"
-            />
-          </span>
-          ?
-        </p>
-      </article>
+      <div
+        class="flex flex-col items-center bg-gradient-to-r from-black/60 justify-center gap-y-[20px] w-full h-full"
+      >
+        <SearchBar />
+        <article class="text-center text-white text-[30px] font-bold">
+          <h1>Game Tracker</h1>
+          <p>
+            сколько нужно времени, <br />
+            чтобы пройти
+            <span>
+              <vueTyperNext
+                :data="labels"
+                :back="true"
+                :back-speed="80"
+                :handler-num="100"
+                :type-speed="80"
+                cursor-char="|"
+              />
+            </span>
+            ?
+          </p>
+        </article>
+      </div>
     </div>
     <div class="w-full h-full bg-[#000201] flex py-[20px]">
       <div
@@ -31,8 +36,8 @@
       </div>
     </div>
     <div
-      class="w-full h-full bg-[#B9B4C7] bg-cover"
-      :style="`background-image: url(${aboutBackgroundUrl});`"
+      class="w-full h-full bg-[#B9B4C7] bg-fixed"
+      :style="`background-image: url(${metalgear});`"
     >
       <div class="flex backdrop-blur-sm h-full w-full py-[20px]">
         <div class="w-full h-full mx-[50px]">
@@ -90,17 +95,14 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
-
+//components
 import SearchBar from "@/components/common/SearchBar.vue";
-import metalgear from "@/assets/metalgear.jpeg";
 import GameCard from "@/components/common/GameCard.vue";
-
 import { vueTyperNext } from "vue-typer-next";
 
-const aboutBackgroundUrl = computed(() => {
-  return metalgear;
-});
+// images
+import metalgear from "@/assets/metalgear.jpeg";
+import dishonored from "@/assets/dishonored.jpeg";
 
 const labels = [
   "The Witcher 3",
