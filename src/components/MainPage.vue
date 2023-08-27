@@ -1,11 +1,11 @@
 <template>
   <div class="w-full h-full flex flex-col">
     <div
-      class="w-full flex bg-[#030A11] bg-left-top bg-no-repeat flex-col items-center justify-evenly h-[500px]"
+      class="w-full flex bg-[#030A11] bg-left-top bg-no-repeat bg-fixed flex-col items-center justify-evenly h-[500px]"
       :style="`background-image: url(${dishonored})`"
     >
       <div
-        class="flex flex-col items-center bg-gradient-to-r from-black/60 justify-center gap-y-[20px] w-full h-full"
+        class="flex flex-col items-center bg-gradient-to-r from-black justify-center gap-y-[20px] w-full h-full"
       >
         <SearchBar />
         <article class="text-center text-white text-[30px] font-bold">
@@ -28,25 +28,35 @@
         </article>
       </div>
     </div>
-    <div class="w-full h-full bg-[#000201] flex py-[20px]">
+    <div
+      class="bg-[#000201] bg-center bg-no-repeat bg-cover bg-fixed"
+      :style="`background-image: url(${karnaca})`"
+    >
       <div
-        class="w-full h-full flex justify-center flex-wrap mx-[100px] gap-[20px]"
+        class="w-full backdrop-blur-sm bg-gradient-to-b from-[#262a2c] h-full flex flex-col gap-y-[20px] py-[20px]"
       >
-        <GameCard v-for="label in labels" :key="label" :label="label" />
+        <h1 class="text-white text-[26px] font-bold text-center">
+          Популярные игры
+        </h1>
+        <div
+          class="w-full h-full flex items-center justify-center flex-wrap gap-[20px]"
+        >
+          <GameCard v-for="label in labels" :key="label" :label="label" />
+        </div>
       </div>
     </div>
-    <div
-      class="w-full h-full bg-[#B9B4C7] bg-fixed"
-      :style="`background-image: url(${metalgear});`"
-    >
-      <div class="flex backdrop-blur-sm h-full w-full py-[20px]">
+
+    <div class="w-full h-full bg-black bg-top bg-no-repeat bg-cover bg-fixed">
+      <div
+        class="flex bg-gradient-to-b from-[#262a2c] backdrop-blur-sm h-full w-full py-[20px]"
+      >
         <div class="w-full h-full mx-[50px]">
-          <h1 class="text-center text-[30px] font-bold text-white">
+          <h1 class="text-center text-[26px] font-bold text-white">
             О сервисе
           </h1>
 
           <div class="flex w-full gap-[20px] justify-around mt-[20px]">
-            <div class="flex self-start w-[50%] bg-black rounded-[6px]">
+            <div class="flex self-start w-[50%] rounded-[6px]">
               <article
                 class="text-left font-bold text-white px-[5px] py-[10px]"
               >
@@ -61,18 +71,16 @@
               </article>
             </div>
 
-            <div class="flex w-[50%] bg-black rounded-[6px]">
+            <div class="flex w-[50%] rounded-[6px]">
               <article
                 class="text-left font-bold text-white px-[5px] py-[10px]"
               >
                 <h1 class="text-[24px]">Особенности сервиса Game Tracker:</h1>
                 <ol class="list-decimal list-inside space-y-[20px] mt-[10px]">
                   <li>
-                    Данные о времени игры: Мы провели глубокий анализ каждой
-                    игры, учли все побочные задания, секреты и возможности
-                    прохождения. Это позволяет нам предоставить вам наиболее
-                    точное предсказание времени, необходимого для завершения
-                    игры.
+                    Данные о времени игры: Рассчет времени прохождения строится
+                    на основе средних данных, учитывая разные категории
+                    прохождения
                   </li>
                   <li>
                     Широкий охват игр: От захватывающих приключений до
@@ -95,36 +103,37 @@
 </template>
 
 <script setup lang="ts">
+//vue
+import { computed, onMounted } from "vue";
+
 //components
 import SearchBar from "@/components/common/SearchBar.vue";
 import GameCard from "@/components/common/GameCard.vue";
 import { vueTyperNext } from "vue-typer-next";
 
 // images
-import metalgear from "@/assets/metalgear.jpeg";
 import dishonored from "@/assets/dishonored.jpeg";
+import karnaca from "@/assets/karnaca.jpeg";
+
+//other imports
+import { useGameListStore } from "@/stores/gameListStore";
+
+//stores
+const gameListStore = useGameListStore();
+
+onMounted(() => {
+  gameListStore.getGameList();
+});
 
 const labels = [
-  "The Witcher 3",
+  "Grand Theft Auto 5",
   "Baldurs Gate 3",
   "Read Dead Redemption 2",
+  "Cyberpunk 2077",
+  "Portal 2",
   "Resident Evil Village",
-  "Metal Gear Solid Phantom Pain",
-  "The Witcher 3",
-  "Baldurs Gate 3",
-  "Read Dead Redemption 2",
-  "Resident Evil Village",
-  "Metal Gear Solid Phantom Pain",
-  "The Witcher 3",
-  "Baldurs Gate 3",
-  "Read Dead Redemption 2",
-  "Resident Evil Village",
-  "Metal Gear Solid Phantom Pain",
-  "The Witcher 3",
-  "Baldurs Gate 3",
-  "Read Dead Redemption 2",
-  "Resident Evil Village",
-  "Metal Gear Solid Phantom Pain",
+  "Call of Cthulhu",
+  "The Sinking City",
 ];
 </script>
 
