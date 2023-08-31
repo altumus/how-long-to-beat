@@ -1,23 +1,23 @@
-import * as vueRouter from 'vue-router'
+import * as vueRouter from "vue-router";
 
 const _routes: Array<vueRouter.RouteRecordRaw> = [
   {
-    path: '/',
-    component: () => import('@/components/MainPage.vue')
+    path: "/",
+    component: () => import("@/components/MainPage.vue"),
   },
   {
-    path: '/search',
-    component: () => import('@/components/SearchPage.vue')
+    path: "/search",
+    component: () => import("@/components/SearchPage.vue"),
   },
   {
-    path: '/:catchAll(.*)',
-    component: () => import('@/components/NotFoundPage.vue')
-  }
-]
+    path: "/:catchAll(.*)",
+    component: () => import("@/components/NotFoundPage.vue"),
+  },
+];
 
 const router = vueRouter.createRouter({
   history: vueRouter.createWebHistory(),
-  routes: _routes
-})
+  routes: _routes,
+});
 
-export default router
+export default router;

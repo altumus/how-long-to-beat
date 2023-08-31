@@ -14,7 +14,25 @@
     <input
       class="w-[500px] h-[40px] px-[5px] focus:outline-none"
       maxlength="70"
+      v-model="inputValue"
       placeholder="test value"
+      @keydown.enter="onSubmit"
     />
   </div>
 </template>
+
+<script setup lang="ts">
+//vue
+import { Ref, ref } from "vue";
+
+//emits
+const emits = defineEmits(["submit"]);
+
+//vars
+const inputValue = ref("") as Ref<string>;
+
+//funcs
+function onSubmit(): void {
+  emits("submit", inputValue.value);
+}
+</script>

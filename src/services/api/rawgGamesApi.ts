@@ -1,15 +1,11 @@
+import { RawgGameResponse } from "@/types/rawg.types";
 import axios from "axios";
-import { rawgGamesApiKey } from "@/services/constants/apiKeys.ts";
 
-export async function getGameList() {
+export async function getGameList(): Promise<RawgGameResponse> {
   try {
     const axiosOptions = {
       method: "GET",
-      url: `https://rawg-video-games-database.p.rapidapi.com/games?key=${rawgGamesApiKey}&page=1&page_size=8`,
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${rawgGamesApiKey}`,
-      },
+      url: `http://localhost:3000/`,
     };
 
     const result = await axios.request(axiosOptions);
@@ -19,5 +15,9 @@ export async function getGameList() {
     return result.data;
   } catch (error) {
     console.log("error in gamelist request", error);
+    Promise.reject(error);
+    return {
+      results: [],
+    };
   }
 }

@@ -7,7 +7,7 @@
       <div
         class="flex flex-col items-center bg-gradient-to-r from-black justify-center gap-y-[20px] w-full h-full"
       >
-        <SearchBar />
+        <SearchBar @submit="onSearch" />
         <article class="text-center text-white text-[30px] font-bold">
           <h1>Game Tracker</h1>
           <p>
@@ -41,7 +41,7 @@
         <div
           class="w-full h-full flex items-center justify-center flex-wrap gap-[20px]"
         >
-          <GameCard v-for="label in labels" :key="label" :label="label" />
+          <GameCard v-for="game in gameList" :key="game.id" :game="game" />
         </div>
       </div>
     </div>
@@ -104,7 +104,8 @@
 
 <script setup lang="ts">
 //vue
-import { onMounted } from "vue";
+import { computed, onMounted } from "vue";
+import { useRouter } from "vue-router";
 
 //components
 import SearchBar from "@/components/common/SearchBar.vue";
@@ -121,10 +122,20 @@ import { useGameListStore } from "@/stores/gameListStore";
 //stores
 const gameListStore = useGameListStore();
 
+//hooks
 onMounted(() => {
   gameListStore.getGameList();
 });
 
+//router
+const router = useRouter();
+
+//computed
+const gameList = computed(() => {
+  return gameListStore.gameList;
+});
+
+//vars
 const labels = [
   "Grand Theft Auto 5",
   "Baldurs Gate 3",
@@ -135,6 +146,11 @@ const labels = [
   "Call of Cthulhu",
   "The Sinking City",
 ];
+
+//funcs
+function onSearch(searchValue: string) {
+  router.push(`/search?searchValue=${searchValue}`);
+}
 </script>
 
 <style scoped>
