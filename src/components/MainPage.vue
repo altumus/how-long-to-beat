@@ -104,7 +104,7 @@
 
 <script setup lang="ts">
 //vue
-import { computed, onMounted } from "vue";
+import { onMounted } from "vue";
 
 //components
 import SearchBar from "@/components/common/SearchBar.vue";
