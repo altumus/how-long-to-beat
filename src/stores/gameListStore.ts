@@ -11,5 +11,9 @@ export const useGameListStore = pinia.defineStore("gameList", {
       const result = await rawgApi.getGameList();
       this.gameList = result.results;
     },
+    async getGameListFromSearch(searchValue: string) {
+      const result = await rawgApi.getGameListFromSearch(searchValue);
+      this.gameList = result.results;
+    },
   },
 });

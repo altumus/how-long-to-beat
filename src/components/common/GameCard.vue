@@ -1,7 +1,7 @@
 <template>
   <div
-    class="h-[200px] w-[300px] bg-red-200 rounded-[8px] bg-cover bg-center"
-    :style="`background-image: url(${props.game.background_image})`"
+    class="h-[200px] w-[300px] bg-black rounded-[8px] bg-cover bg-center"
+    :style="`background-image: url(${props.game.background_image || noImage})`"
   >
     <div
       class="w-full rounded-[8px] h-full group hover:backdrop-blur-lg transition-[100ms] flex flex-col"
@@ -16,7 +16,7 @@
         </div>
       </div>
       <div
-        class="flex items-center w-full h-[20%] justify-center bg-black text-white font-bold rounded-b-[8px]"
+        class="flex items-center w-full min-h-[20%] py-[2px] px-[5px] justify-center bg-black text-white font-bold rounded-b-[8px]"
       >
         {{ props.game.name }}
       </div>
@@ -27,6 +27,9 @@
 <script setup lang="ts">
 //vue
 import { PropType } from "vue";
+
+//images
+import noImage from "@/assets/no-image.jpeg";
 
 //imports
 import { RawgGameType } from "@/types/rawg.types";

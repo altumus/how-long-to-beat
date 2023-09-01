@@ -1,5 +1,10 @@
 <template>
-  <div class="flex bg-white items-center gap-x-[5px] px-[5px] rounded-[6px]">
+  <LoaderIcon v-if="loading" />
+
+  <div
+    v-else
+    class="flex bg-white items-center gap-x-[5px] px-[5px] rounded-[6px]"
+  >
     <svg
       class="cursor-pointer"
       xmlns="http://www.w3.org/2000/svg"
@@ -14,6 +19,7 @@
     <input
       class="w-[500px] h-[40px] px-[5px] focus:outline-none"
       maxlength="70"
+      :disabled="loading"
       v-model="inputValue"
       placeholder="test value"
       @keydown.enter="onSubmit"
@@ -25,11 +31,26 @@
 //vue
 import { Ref, ref } from "vue";
 
+//components
+import LoaderIcon from "@/components/common/icons/LoaderIcon.vue";
+
+//props
+const props = defineProps({
+  value: {
+    type: String,
+    default: "",
+  },
+  loading: {
+    type: Boolean,
+    default: false,
+  },
+});
+
 //emits
 const emits = defineEmits(["submit"]);
 
 //vars
-const inputValue = ref("") as Ref<string>;
+const inputValue = ref(props.value) as Ref<string>;
 
 //funcs
 function onSubmit(): void {
