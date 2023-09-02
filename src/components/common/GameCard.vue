@@ -1,6 +1,6 @@
 <template>
   <div
-    class="h-[200px] w-[300px] bg-black rounded-[8px] bg-cover bg-center"
+    class="h-[200px] cursor-pointer w-[300px] bg-black rounded-[8px] bg-cover bg-center"
     :style="`background-image: url(${props.game.background_image || noImage})`"
   >
     <div

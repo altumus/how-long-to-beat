@@ -39,6 +39,13 @@
           Популярные игры
         </h1>
         <div
+          v-if="loading"
+          class="w-full h-full flex items-center justify-center flex-wrap gap-[20px]"
+        >
+          <GameCardSkeleton v-for="i in 8" :key="i" />
+        </div>
+        <div
+          v-if="!loading"
           class="w-full h-full flex items-center justify-center flex-wrap gap-[20px]"
         >
           <GameCard v-for="game in gameList" :key="game.id" :game="game" />
@@ -104,12 +111,13 @@
 
 <script setup lang="ts">
 //vue
-import { computed, onMounted } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 
 //components
 import SearchBar from "@/components/common/SearchBar.vue";
 import GameCard from "@/components/common/GameCard.vue";
+import GameCardSkeleton from "@/components/skeletons/GameCardSkeleton.vue";
 import { vueTyperNext } from "vue-typer-next";
 
 // images
@@ -123,8 +131,10 @@ import { useGameListStore } from "@/stores/gameListStore";
 const gameListStore = useGameListStore();
 
 //hooks
-onMounted(() => {
-  gameListStore.getGameList();
+onMounted(async () => {
+  loading.value = true;
+  await gameListStore.getGameList();
+  loading.value = false;
 });
 
 //router
@@ -146,6 +156,8 @@ const labels = [
   "Call of Cthulhu",
   "The Sinking City",
 ];
+
+const loading = ref(false);
 
 //funcs
 function onSearch(searchValue: string) {
