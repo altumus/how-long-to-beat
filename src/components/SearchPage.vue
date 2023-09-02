@@ -10,6 +10,7 @@
         Результаты поиска по запросу: "{{ searchValue }}"
       </h1>
       <SearchBar
+        class="w-[80%] sm:w-[50%]"
         @submit="onSearch"
         :value="searchValue"
         :loading="gameListLoading"

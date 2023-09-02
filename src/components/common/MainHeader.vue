@@ -9,9 +9,6 @@
       <router-link to="/">
         <div>Главная</div>
       </router-link>
-      <router-link to="/about">
-        <div>О сервисе</div>
-      </router-link>
     </div>
   </div>
 </template>

@@ -7,7 +7,7 @@
       <div
         class="flex flex-col items-center bg-gradient-to-r from-black justify-center gap-y-[20px] w-full h-full"
       >
-        <SearchBar @submit="onSearch" />
+        <SearchBar class="w-[80%] sm:w-[50%]" @submit="onSearch" />
         <article class="text-center text-white text-[30px] font-bold">
           <h1>Game Tracker</h1>
           <p>
